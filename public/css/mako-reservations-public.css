@@ -1,0 +1,39 @@
+#TB_window {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 100%;
+    max-width: 90%;
+    margin: 0 !important;
+}
+#TB_iframeContent {
+    width: 100% !important;
+    height: 90vh !important;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.mako-book-now {
+    position:fixed;
+    bottom: 40px;
+    right:40px;
+}
+.btn-mako-book-now {
+    background: red;
+    color:#fff;
+    text-decoration: none;
+    font-size:30px;
+    padding: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+
+}
+.btn-mako-book-now svg {
+    display: inline-block;
+    fill: #fff;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    top: 20px;
+    left: 10px;
+}
