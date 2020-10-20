@@ -80,3 +80,13 @@ function run_mako_reservations() {
 
 }
 run_mako_reservations();
+
+
+require plugin_dir_path( __FILE__ ) . 'vendors/plugin-update-checker/plugin-update-checker.php';
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+    'https://github.com/jefferykarbowski/mako-reservations/',
+    __FILE__,
+    'mako-reservations'
+);
+$myUpdateChecker->setAuthentication('55fc9310055924d57bd72f9d496d820f3036829e');
+
