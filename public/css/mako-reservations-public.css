@@ -1,3 +1,4 @@
+#TB_window {position: absolute!important}
 .mako-book-now {
     position:fixed;
     bottom: 40px;
@@ -21,4 +22,13 @@
     position: relative;
     top: 20px;
     left: 10px;
+}
+
+@media screen and (max-width: 720px) {
+    .mako-book-now {
+        width:100%;
+        right: auto;
+        left: 0;
+        text-align: center;
+    }
 }
