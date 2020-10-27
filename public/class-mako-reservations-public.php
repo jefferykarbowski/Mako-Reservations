@@ -182,6 +182,11 @@ class Mako_Reservations_Public {
                             maxWidth: 1024,
                             sizeWidth: true,
                             widthCalculationMethod: 'rightMostElement',
+                            onMessage: function (message) {
+                                if (message.message == 'tb_remove') {
+                                    tb_remove();
+                                }
+                            },
                             onResize: function(iframe){
                                 var displayWidth = iframe.width;
                                 var displayHeight = iframe.height;
@@ -189,6 +194,7 @@ class Mako_Reservations_Public {
                             },
                         }, '#TB_iframeContent');
                         window.iFrameResizer = {
+
                             onReady: function () {
                                 if ('parentIFrame' in window) {
                                     parentIFrame.sendMessage('Loaded iframe [' + window.parentIFrame.getId() + '].');
