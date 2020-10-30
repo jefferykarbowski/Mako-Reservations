@@ -1,8 +1,60 @@
 (function( $ ) {
-	'use strict';
+		$( 'body' ).on( 'thickbox:iframe:loaded', function() {
+			$("html, body").animate({ scrollTop: 0 }, "fast");
+			var newWidth = $(window).width();
+			if (newWidth < 1024) {
+				$("#TB_window").css("width", "90%");
+				$("#TB_window").css('margin-left', '-' + parseInt((newWidth / 2), 10) + 'px');
+				$("#TB_window").css('margin', '0');
+				$("#TB_window").css('top', '20px');
+				$("#TB_window").css('left', '50%');
+				$("#TB_window").css('transform', 'translate(-50%, 0)');
+				$('#TB_iframeContent').width('100%');
+			} else {
+				$("#TB_window").css("width", '1024px!important');
+			}
+			iFrameResize({
+				// log: true,
+				heightCalculationMethod: 'lowestElement',
+				maxWidth: 1024,
+				sizeWidth: true,
+				widthCalculationMethod: 'rightMostElement',
+				onMessage: function (message) {
+					if (message.message == 'tb_remove') {
+						tb_remove();
+					}
+				},
+				onResize: function(iframe){
+					var displayWidth = iframe.width;
+					var displayHeight = iframe.height;
 
-
+				},
+			}, '#TB_iframeContent');
+			window.iFrameResizer = {
+				onReady: function () {
+					if ('parentIFrame' in window) {
+						parentIFrame.sendMessage('Loaded iframe [' + window.parentIFrame.getId() + '].');
+					}
+				}
+			};
+		});
 })( jQuery );
+(function ($) {
+	$(window).resize(function() {
+		var newHeight = $(window).height();
+		var newWidth = $(window).width();
+		if (newWidth < 1024) {
+			$("#TB_window").css("width", "90%");
+			$("#TB_window").css('margin-left', '0');
+			$("#TB_window").css('margin', '0');
+			$("#TB_window").css('top', '20px');
+			$("#TB_window").css('left', '50%');
+			$("#TB_window").css('transform', 'translate(-50%, 0)');
+		} else {
+			$("#TB_window").css("width", '1024px!important');
+		}
+	});
+}(window.jQuery || window.$));
 /*! iFrame Resizer (iframeSizer.min.js ) - v4.2.11 - 2020-09-09
  *  Desc: Force cross domain iframes to size to content.
  *  Requires: iframeResizer.contentWindow.min.js to be loaded into the target frame.
