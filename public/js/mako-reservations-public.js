@@ -1,7 +1,7 @@
 (function( $ ) {
 		$( 'body' ).on( 'thickbox:iframe:loaded', function() {
-			$("html, body").animate({ scrollTop: 0 }, "fast");
 			var newWidth = $(window).width();
+			$("body").css("overflow", "hidden");
 			if (newWidth < 1024) {
 				$("#TB_window").css("width", "90%");
 				$("#TB_window").css('margin-left', '-' + parseInt((newWidth / 2), 10) + 'px');
@@ -21,6 +21,7 @@
 				widthCalculationMethod: 'rightMostElement',
 				onMessage: function (message) {
 					if (message.message == 'tb_remove') {
+						$("body").css("overflow", "");
 						tb_remove();
 					}
 				},
