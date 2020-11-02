@@ -60,9 +60,7 @@ class Mako_Reservations_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/mako-reservations-public.css', array(), $this->version, 'all' );
-
 	}
 
 	/**
@@ -71,9 +69,7 @@ class Mako_Reservations_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/mako-reservations-public.js', array( 'jquery' ), $this->version, false );
-
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/mako-reservations-public.js', array( 'jquery', 'thickbox' ), $this->version, true );
 	}
 
 
@@ -156,73 +152,7 @@ class Mako_Reservations_Public {
             $wp_query->the_post();
             $calendar_id = get_field('id');
             $calendar_key = get_field('key');
-            ?>
-            <div class="mako-book-now">
-            <a class="btn-mako-book-now thickbox" href="https://staging.makoreservations.com/mako-app/i/reservation/calendar/<?php echo $calendar_key; ?>/<?php echo $calendar_id; ?>/?TB_iframe=true&width=1024&height=600&modal=true">Book Now <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M21 11c0-.552-.448-1-1-1s-1 .448-1 1c0 .551.448 1 1 1s1-.449 1-1m3 .486c-1.184 2.03-3.29 4.081-5.66 5.323-1.336-1.272-2.096-2.957-2.103-4.777-.008-1.92.822-3.704 2.297-5.024 2.262.986 4.258 2.606 5.466 4.478m-6.63 5.774c-.613.255-1.236.447-1.861.573-1.121 1.348-2.796 2.167-5.287 2.167-.387 0-.794-.02-1.222-.061.647-.882.939-1.775 1.02-2.653-2.717-1.004-4.676-2.874-6.02-4.287-1.038 1.175-2.432 2-4 2 1.07-1.891 1.111-4.711 0-6.998 1.353.021 3.001.89 4 1.999 1.381-1.2 3.282-2.661 6.008-3.441-.1-.828-.399-1.668-1.008-2.499.429-.04.837-.06 1.225-.06 2.467 0 4.135.801 5.256 2.128.68.107 1.357.272 2.019.495-1.453 1.469-2.271 3.37-2.263 5.413.008 1.969.773 3.799 2.133 5.224"/></svg></a></div>
-            <script>
-
-                jQuery(document).ready(function ($) {
-
-                    $( 'body' ).on( 'thickbox:iframe:loaded', function() {
-                        var newWidth = $(window).width();
-                        $("body").css("overflow", "hidden");
-                        if (newWidth < 1024) {
-                            $("#TB_window").css("width", "90%");
-                            $("#TB_window").css('margin-left', '-' + parseInt((newWidth / 2), 10) + 'px');
-                            $("#TB_window").css('margin', '0');
-                            $("#TB_window").css('top', '20px');
-                            $("#TB_window").css('left', '50%');
-                            $("#TB_window").css('transform', 'translate(-50%, 0)');
-                            $('#TB_iframeContent').width('100%');
-                        } else {
-                            $("#TB_window").css("width", '1024px!important');
-                        }
-                        iFrameResize({
-                            // log: true,
-                            heightCalculationMethod: 'lowestElement',
-                            maxWidth: 1024,
-                            sizeWidth: true,
-                            widthCalculationMethod: 'rightMostElement',
-                            onMessage: function (message) {
-                                if (message.message == 'tb_remove') {
-                                   $("body").css("overflow", "");
-                                   tb_remove();
-                                }
-                            },
-                            onResize: function(iframe){
-                                var displayWidth = iframe.width;
-                                var displayHeight = iframe.height;
-
-                            },
-                        }, '#TB_iframeContent');
-                        window.iFrameResizer = {
-
-                            onReady: function () {
-                                if ('parentIFrame' in window) {
-                                    parentIFrame.sendMessage('Loaded iframe [' + window.parentIFrame.getId() + '].');
-                                }
-                            }
-                        };
-                    });
-                });
-                (function ($) {
-                    $(window).resize(function() {
-                        var newHeight = $(window).height();
-                        var newWidth = $(window).width();
-                        if (newWidth < 1024) {
-                            $("#TB_window").css("width", "90%");
-                            $("#TB_window").css('margin-left', '0');
-                            $("#TB_window").css('margin', '0');
-                            $("#TB_window").css('top', '20px');
-                            $("#TB_window").css('left', '50%');
-                            $("#TB_window").css('transform', 'translate(-50%, 0)');
-                        } else {
-                            $("#TB_window").css("width", '1024px!important');
-                        }
-                    });
-                }(window.jQuery || window.$));
-            </script>
-            <?php
+            include plugin_dir_path( __FILE__ ) . 'partials/mako-reservations-public-display.php';
         }
     }
 
