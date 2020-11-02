@@ -165,6 +165,7 @@ class Mako_Reservations_Public {
 
                     $( 'body' ).on( 'thickbox:iframe:loaded', function() {
                         var newWidth = $(window).width();
+                        $("body").css("overflow", "hidden");
                         if (newWidth < 1024) {
                             $("#TB_window").css("width", "90%");
                             $("#TB_window").css('margin-left', '-' + parseInt((newWidth / 2), 10) + 'px');
@@ -184,7 +185,8 @@ class Mako_Reservations_Public {
                             widthCalculationMethod: 'rightMostElement',
                             onMessage: function (message) {
                                 if (message.message == 'tb_remove') {
-                                    tb_remove();
+                                   $("body").css("overflow", "");
+                                   tb_remove();
                                 }
                             },
                             onResize: function(iframe){
