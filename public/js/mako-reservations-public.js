@@ -2,17 +2,6 @@
 		$( 'body' ).on( 'thickbox:iframe:loaded', function() {
 			var newWidth = $(window).width();
 			$("body").css("overflow", "hidden");
-			if (newWidth < 1024) {
-				$("#TB_window").css("width", "90%");
-				$("#TB_window").css('margin-left', '-' + parseInt((newWidth / 2), 10) + 'px');
-				$("#TB_window").css('margin', '0');
-				$("#TB_window").css('top', '20px');
-				$("#TB_window").css('left', '50%');
-				$("#TB_window").css('transform', 'translate(-50%, 0)');
-				$('#TB_iframeContent').width('100%');
-			} else {
-				$("#TB_window").css("width", '1024px!important');
-			}
 			iFrameResize({
 				// log: true,
 				heightCalculationMethod: 'lowestElement',
