@@ -40,6 +40,7 @@
     position:fixed;
     bottom: 40px;
     right:40px;
+	z-index: 1000;
 }
 .btn-mako-book-now {
     background: red;
