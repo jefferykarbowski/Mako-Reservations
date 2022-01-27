@@ -88,5 +88,4 @@ $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
     __FILE__,
     'mako-reservations'
 );
-$myUpdateChecker->setAuthentication('55fc9310055924d57bd72f9d496d820f3036829e');
 
