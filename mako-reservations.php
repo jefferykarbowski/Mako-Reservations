@@ -88,4 +88,4 @@ $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
     __FILE__,
     'mako-reservations'
 );
-
+$myUpdateChecker->setBranch('main');
