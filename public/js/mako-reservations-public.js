@@ -1,7 +1,12 @@
 (function( $ ) {
 		$( 'body' ).on( 'thickbox:iframe:loaded', function() {
 			var newWidth = $(window).width();
-			$("body").css("overflow", "hidden");
+			$("body, html").css({
+				"overflow":"hidden",
+				"margin":0,
+				"height":"100%"
+			});
+
 			iFrameResize({
 				// log: true,
 				heightCalculationMethod: 'lowestElement',
@@ -10,7 +15,11 @@
 				widthCalculationMethod: 'rightMostElement',
 				onMessage: function (message) {
 					if (message.message == 'tb_remove') {
-						$("body").css("overflow", "");
+						$("body, html").css({
+							"overflow":"",
+							"margin":0,
+							"height":"auto"
+						});
 						tb_remove();
 					}
 				},
