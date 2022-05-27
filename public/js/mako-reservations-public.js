@@ -1,6 +1,6 @@
 (function( $ ) {
 		$( 'body' ).on( 'thickbox:iframe:loaded', function() {
-			var newWidth = $(window).width();
+			var newWidth = $(window).width()
 			$("body, html").css({
 				"overflow":"hidden",
 				"margin":0,
@@ -20,40 +20,51 @@
 							"margin":0,
 							"height":"auto"
 						});
-						tb_remove();
+						tb_remove()
 					}
 				},
 				onResize: function(iframe){
-					var displayWidth = iframe.width;
-					var displayHeight = iframe.height;
-
+					let displayWidth = iframe.width
+					let displayHeight = iframe.height
 				},
-			}, '#TB_iframeContent');
+			}, '#TB_iframeContent')
 			window.iFrameResizer = {
 				onReady: function () {
 					if ('parentIFrame' in window) {
-						parentIFrame.sendMessage('Loaded iframe [' + window.parentIFrame.getId() + '].');
+						parentIFrame.sendMessage('Loaded iframe [' + window.parentIFrame.getId() + '].')
 					}
 				}
 			};
 		});
 })( jQuery );
+
+
 (function ($) {
 	$(window).resize(function() {
-		var newHeight = $(window).height();
-		var newWidth = $(window).width();
-		if (newWidth < 1024) {
-			$("#TB_window").css("width", "90%");
-			$("#TB_window").css('margin-left', '0');
-			$("#TB_window").css('margin', '0');
-			$("#TB_window").css('top', '20px');
-			$("#TB_window").css('left', '50%');
-			$("#TB_window").css('transform', 'translate(-50%, 0)');
-		} else {
-			$("#TB_window").css("width", '1024px!important');
-		}
-	});
-}(window.jQuery || window.$));
+		let newHeight = $(window).height()
+		// console.log(newHeight);
+		let newWidth = $(window).width()
+		//  console.log(newWidth);
+		$("#TB_window").css("height", (newHeight))
+		$("#TB_window").css("width", (newWidth))
+		$('#TB_ajaxContent').css("width", (newWidth))
+		$("#TB_window").css("margin-left", -(parseInt((newWidth)/2)))
+		// $("#TB_window").css("margin-left", (-newWidth)/2);
+	})
+	/* trigger when page is ready */
+	$(window).load(function() {
+		let newHeight = $(window).height()
+		// console.log(newHeight);
+		let newWidth = $(window).width()
+		//  console.log(newWidth);
+		$("#TB_window").css("height", (newHeight))
+		$("#TB_window").css("width", (newWidth))
+		$('#TB_ajaxContent').css("width", (newWidth))
+		$("#TB_window").css("margin-left", -(parseInt((newWidth)/2)))
+	})
+}(window.jQuery || window.$))
+
+
 /*! iFrame Resizer (iframeSizer.min.js ) - v4.2.11 - 2020-09-09
  *  Desc: Force cross domain iframes to size to content.
  *  Requires: iframeResizer.contentWindow.min.js to be loaded into the target frame.
