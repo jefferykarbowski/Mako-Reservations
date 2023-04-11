@@ -16,7 +16,7 @@
  * Plugin Name:       Mako Reservations
  * Plugin URI:        https://makoreservations.com/
  * Description:       Wordpress Plugin for displaying Mako Reservations Calendars.
- * Version:           1.1.4
+ * Version:           1.2.0
  * Author:            Jeffery Karbowski
  * Author URI:        https://jefferykarbowski.com
  * License:           GPL-2.0+
